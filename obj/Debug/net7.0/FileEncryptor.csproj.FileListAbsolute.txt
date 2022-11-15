@@ -1,0 +1,17 @@
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\bin\Debug\net7.0\FileEncryptor.exe
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\bin\Debug\net7.0\FileEncryptor.deps.json
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\bin\Debug\net7.0\FileEncryptor.runtimeconfig.json
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\bin\Debug\net7.0\FileEncryptor.dll
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\bin\Debug\net7.0\FileEncryptor.pdb
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\obj\Debug\net7.0\FileEncryptor.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\obj\Debug\net7.0\FileEncryptor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\obj\Debug\net7.0\FileEncryptor.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\obj\Debug\net7.0\FileEncryptor.AssemblyInfo.cs
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\obj\Debug\net7.0\FileEncryptor.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\obj\Debug\net7.0\FileEncryptor.dll
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\obj\Debug\net7.0\refint\FileEncryptor.dll
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\obj\Debug\net7.0\FileEncryptor.pdb
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\obj\Debug\net7.0\FileEncryptor.genruntimeconfig.cache
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\obj\Debug\net7.0\ref\FileEncryptor.dll
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\User\Desktop\Coding\CodingSimple\C#\FileEncryptor\obj\Debug\net7.0\FileEncryptor.csproj.CopyComplete
