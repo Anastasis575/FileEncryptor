@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Security.Cryptography;
-namespace Encryptor
+namespace FileEncryptor
 {
     class FileEncryption
     {
@@ -53,9 +53,9 @@ namespace Encryptor
 
                 using (MemoryStream memoryStream = new MemoryStream(buffer))
                 {
-                    using (CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, transform, CryptoStreamMode.Read))
+                    using (CryptoStream cryptoStream = new CryptoStream(memoryStream, transform, CryptoStreamMode.Read))
                     {
-                        using (StreamReader stream = new StreamReader((Stream)cryptoStream)){
+                        using (StreamReader stream = new StreamReader(cryptoStream)){
                             return stream.ReadToEnd();
                         }
                     }

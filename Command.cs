@@ -1,6 +1,4 @@
-using Encryptor;
-using Password;
-namespace Encryptor
+namespace FileEncryptor
 {
     class Command
     {
@@ -9,13 +7,13 @@ namespace Encryptor
             PassWordManager manager;
             if (!Directory.Exists("data") || !File.Exists("./data/pass.txt"))
             {
-                manager = new Password.PassWordManager();
-                manager.addPass("W7p7LZzv9x4y2");
-                manager.toFile();
+                manager = new PassWordManager();
+                manager.AddPass("W7p7LZzv9x4y2");
+                manager.ToFile();
             }
             else
             {
-                manager = new Password.PassWordManager("./data/pass.txt");
+                manager = new PassWordManager("./data/pass.txt");
             }
 
             bool isEncrypt = false, isDecrypt = false;
@@ -28,9 +26,9 @@ namespace Encryptor
                 Console.WriteLine("Please choose the action you would like to use either encryption(-e/--encryption) or decryption(-d/--decryption) followed by path");
                 return;
             }
-            for (int i = 0; i < args.Length; i++)
+            foreach (var t in args)
             {
-                switch (args[i])
+                switch (t)
                 {
                     case "--encrypt":
                     case "-e":
@@ -48,20 +46,19 @@ namespace Encryptor
                     default:
                         if (previous == "-o" || previous == "--output")
                         {
-                            output = args[i];
+                            output = t;
                         }
                         else if (previous == "-p" || previous == "--password")
                         {
-                            pass = args[i];
+                            pass = t;
                         }
                         else
                         {
-                            path = args[i];
+                            path = t;
                         }
                         break;
                 }
-                previous = args[i];
-
+                previous = t;
             }
 
             if ((!isEncrypt && !isDecrypt) || string.IsNullOrEmpty(path))
@@ -71,7 +68,7 @@ namespace Encryptor
                 return;
             }
 
-            string? decr_key = null;
+            string? decrΚey = null;
             if (string.IsNullOrEmpty(pass))
             {
                 while (string.IsNullOrEmpty(pass))
@@ -79,30 +76,34 @@ namespace Encryptor
                     Console.WriteLine("Please input your password.");
                     pass = Console.ReadLine();
                     if (pass == null) continue;
-                    decr_key = manager.Authenticate(pass);
-                    if (decr_key != null) break;
+                    decrΚey = manager.Authenticate(pass);
+                    if (decrΚey != null) break;
                 }
             }
             else
             {
-                decr_key = manager.Authenticate(pass);
+                decrΚey = manager.Authenticate(pass);
             }
-            if (decr_key == null)
+            if (decrΚey == null)
             {
-                System.Console.WriteLine("Wrong Password. Try again!");
+                Console.WriteLine("Wrong Password. Try again!");
                 return;
             };
-            string file_data = Encryptor.FileEncryption.ReadFile(path);
-            string result_string;
+            string fileData = FileEncryption.ReadFile(path);
+            string resultString;
             if (isEncrypt)
             {
-                result_string = Encryptor.FileEncryption.Encrypt(file_data, decr_key);
+                resultString = FileEncryption.Encrypt(fileData, decrΚey);
                 if (string.IsNullOrEmpty(output))
                     output = "encrypted_file.txt";
             }
-            else
+
+            if (isDecrypt)
             {
-                result_string = Encryptor.FileEncryption.Decrypt(file_data, decr_key);
+
+            }
+            {
+                resultString = FileEncryption.Decrypt(fileData, decrΚey);
                 if (string.IsNullOrEmpty(output))
                     output = "decrypted_file.txt";
             }
@@ -110,7 +111,7 @@ namespace Encryptor
             {
                 output = Directory.GetCurrentDirectory() + "/" + output;
             }
-            File.WriteAllText(output, result_string);
+            File.WriteAllText(output, resultString);
         }
 
     }

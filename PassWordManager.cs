@@ -1,21 +1,21 @@
 using Newtonsoft.Json;
 using System.Text;
-namespace Password
+namespace FileEncryptor
 {
     class PassWordManager
     {
-        const string key="Yq3t6w9y$B&E)H@McQfTjWnZr4u7x!A%";
+        const string Key="Yq3t6w9y$B&E)H@McQfTjWnZr4u7x!A%";
 
-        private List<Password>? passwords{get;set;}
+        private List<string>? Passwords{get;set;}
 
         public PassWordManager(){
-            passwords=new List<Password>();
+            Passwords=new List<string>();
         }
 
 
-        public void toFile(){
-            string raw=JsonConvert.SerializeObject(passwords);
-            string enc=Encryptor.FileEncryption.Encrypt(raw,key);
+        public void ToFile(){
+            string raw=JsonConvert.SerializeObject(Passwords);
+            string enc=FileEncryption.Encrypt(raw,Key);
             if(!Directory.Exists("./data")){
                 Directory.CreateDirectory("./data");
             }
@@ -25,16 +25,16 @@ namespace Password
 
         public PassWordManager(string path)
         {
-            string raw=Encryptor.FileEncryption.ReadFile(path);
+            string raw=FileEncryption.ReadFile(path);
             string? data=null;
             try{
-                data=Encryptor.FileEncryption.Decrypt(raw,key);            
-            }catch (System.Exception e){
+                data=FileEncryption.Decrypt(raw,Key);
+            }catch (Exception e){
                 Console.Error.WriteLine(e);
             }
             if (data!=null){
-                passwords=JsonConvert.DeserializeObject<List<Password>>(data);
-                if(passwords==null){
+                Passwords=JsonConvert.DeserializeObject<List<string>>(data);
+                if(Passwords==null){
                     throw new Exception("Cannot Read Passwords");
                 }
             }
@@ -43,35 +43,26 @@ namespace Password
 
 
         public string? Authenticate(string pass){
-            if(!this.containsPass(pass)) return null;
-            return key;
+            if(!this.ContainsPass(pass)) return null;
+            return Key;
         }
 
 
-        public void addPass(string pass){
-            if (this.passwords==null)return;
-            if (!this.containsPass(pass))
-                this.passwords.Add(new Password(pass));
+        public void AddPass(string pass){
+            if (this.Passwords==null)return;
+            if (!this.ContainsPass(pass))
+                this.Passwords.Add(pass);
         }
 
-        public bool containsPass(string pass){
-            if(this.passwords==null)return false;
-            return this.passwords.FindAll(value=>value.password==pass).Any<Password>();
+        public bool ContainsPass(string pass){
+            if(this.Passwords==null)return false;
+            return this.Passwords.FindAll(value=>value==pass).Any();
         }
 
-        public void removePass(string pass){
-            if(this.passwords==null)return;
-            this.passwords.RemoveAll(value=>value.password==pass);
+        public void RemovePass(string pass){
+            if(this.Passwords==null)return;
+            this.Passwords.RemoveAll(value=>value==pass);
         }
 
-    }
-
-    public class Password{
-        public string password{get; set;}
-
-        public Password(string password)
-        {
-            this.password = password;
-        }
     }
 }
